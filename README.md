@@ -153,3 +153,57 @@ npm test
 ## License
 
 MIT © PhoenixAI Hub
+
+---
+
+## Architecture
+
+```
+impact-graph
+├── src/
+│   ├── cli.ts         # Commander CLI entry point
+│   ├── parser.ts      # AST extraction (TypeScript, JavaScript, Python)
+│   ├── graph.ts       # Call graph construction + adjacency representation
+│   ├── pagerank.ts    # Iterative PageRank + risk scoring
+│   ├── impact.ts      # BFS transitive impact traversal
+│   ├── stats.ts       # Codebase health metrics
+│   └── visualize.ts   # Mermaid / DOT / JSON output
+└── tests/
+```
+
+**Flow:** `parse files` → `build call graph` → (on query) `BFS from changed nodes` → `rank by PageRank` → `output`
+
+---
+
+## CI Setup
+
+Add impact analysis to your PR workflow:
+
+```yaml
+# .github/workflows/impact.yml
+name: Impact Analysis
+on: [pull_request]
+
+jobs:
+  impact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Build impact graph
+        run: npx @phoenixaihub/impact-graph index
+      - name: Analyze PR impact
+        run: npx @phoenixaihub/impact-graph check --diff --format markdown >> $GITHUB_STEP_SUMMARY
+```
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+

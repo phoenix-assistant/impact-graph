@@ -1,23 +1,35 @@
 ---
 name: Bug Report
-about: Something doesn't work as expected
+about: Report a bug or unexpected behavior
 title: '[BUG] '
 labels: bug
 assignees: ''
 ---
 
-**Describe the bug**
+## Describe the Bug
 
-**To Reproduce**
-```bash
-impact-graph <command>
-```
+A clear and concise description of what the bug is.
 
-**Expected behavior**
+## Steps to Reproduce
 
-**Project context (optional)**
-- Language: TS/JS | Python | Go
-- Project size: ~N files
-- OS: macOS | Linux | Windows
+1. Run `...`
+2. See error
 
-**impact-graph version**
+## Expected Behavior
+
+What you expected to happen.
+
+## Actual Behavior
+
+What actually happened. Include the full error output if applicable.
+
+## Environment
+
+- OS: [e.g. macOS 14, Ubuntu 22.04]
+- Node.js: [e.g. 20.11.0] (`node --version`)
+- Tool version: (`npx <tool> --version`)
+- Shell: [e.g. zsh, bash]
+
+## Additional Context
+
+Any other context, screenshots, or logs.
